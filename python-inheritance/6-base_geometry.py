@@ -1,18 +1,13 @@
 #!/usr/bin/python3
-"""
-    BaseGeometry module
-"""
+""" 0x0A. Python - Inheritance, task 6 """
 
 
-class BaseGeometry():
-    """
-        BaseGeometry Class
+class BaseGeometry:
+    """Intentionally empty area() method.
+
     """
     def area(self):
-        """
-            public instance
-            Raise:
-                Exception: Area not implemented
+        """Unimplemented, only raises exception to notify user.
 
         """
-        raise Exception("area() is not implemented")
+        raise Exception('area() is not implemented')
