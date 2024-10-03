@@ -1,39 +1,35 @@
+#!/usr/bin/python3
+"""Module for XML manipulation"""
 import xml.etree.ElementTree as ET
 
+
 def serialize_to_xml(dictionary, filename):
-    """
-    Serialize a Python dictionary into XML format and save it to a file.
+    """Function to serialize dictionary into XML"""
 
-    Args:
-    - dictionary (dict): Python dictionary to serialize.
-    - filename (str): Filename to save the XML data.
-
-    Returns:
-    - None
-    """
+    # Creating the root element
     root = ET.Element('data')
+
+    # Converting the dictionary into Element
     for key, value in dictionary.items():
         child = ET.SubElement(root, key)
-        child.text = str(value)  # Convert value to string for XML serialization
+        child.text = str(value)
 
+    # Converting tree to ElementTree
     tree = ET.ElementTree(root)
+
+    # Writing content to the file
     tree.write(filename)
 
+
 def deserialize_from_xml(filename):
-    """
-    Deserialize XML data from a file into a Python dictionary.
+    """Function to deserialize XML file into dictionary"""
 
-    Args:
-    - filename (str): Filename from which to read XML data.
-
-    Returns:
-    - dict: Deserialized Python dictionary.
-    """
+    # Parsing the XML file
     tree = ET.parse(filename)
     root = tree.getroot()
+    data = {}
 
-    dictionary = {}
+    # Converting data into dictionary
     for child in root:
-        dictionary[child.tag] = child.text  # Convert text back to appropriate Python type if needed
-
-    return dictionary
+        data[child.tag] = child.text
+    return data
